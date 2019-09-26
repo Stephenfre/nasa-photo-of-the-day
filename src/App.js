@@ -1,13 +1,44 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import NasaImg from "./Components/NasaImg.js";
+import ImgInfo from "./Components/ImgInfo.js";
 import "./App.css";
 
 function App() {
+  const [nasa, setNasa] = useState([]);
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const nasaListItems = await axios.get(
+          "https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY&date=2017-07-12"
+        );
+        console.log(nasaListItems);
+        setNasa(nasaListItems.data);
+      } catch (err) {
+        console.log(err);
+      } //try block end
+    } // end of fechData()
+
+    fetchData();
+  }, []);
+
   return (
     <div className="App">
-      <p>
-        Read through the instructions in the README.md file to build your NASA
-        app! Have fun 🚀!
-      </p>
+      <h1></h1>
+      <div>
+        <NasaImg
+          className="nasa-photo-of-the-day"
+          url={nasa.url}
+          copyright={nasa.copyright}
+        />
+        <ImgInfo
+          className="nasa-info"
+          title={nasa.title}
+          date={nasa.date}
+          explanation={nasa.explanation}
+        />
+      </div>
     </div>
   );
 }
