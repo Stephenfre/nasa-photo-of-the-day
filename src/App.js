@@ -11,7 +11,7 @@ function App() {
     async function fetchData() {
       try {
         const nasaListItems = await axios.get(
-          "https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY&date=2017-07-12"
+          "https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY&date=2019-09-26"
         );
         console.log(nasaListItems);
         setNasa(nasaListItems.data);
