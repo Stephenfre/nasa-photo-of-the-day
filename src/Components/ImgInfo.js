@@ -1,11 +1,24 @@
 import React from "react";
+import {
+  Card,
+  CardImg,
+  CardText,
+  CardBody,
+  CardTitle,
+  CardSubtitle,
+  Col
+} from "reactstrap";
 
 export default function NasaInfo(props) {
   return (
-    <div className="nasa-info" key={props.id}>
-      <h1>{props.title}</h1>
-      <h3>{props.date}</h3>
-      <p>{props.explanation}</p>
-    </div>
+    <Col>
+      <Card className="nasa-info" key={props.id}>
+        <CardBody>
+          <CardTitle>{props.title}</CardTitle>
+          <CardSubtitle>{props.date}</CardSubtitle>
+          <CardText>{props.explanation}</CardText>
+        </CardBody>
+      </Card>
+    </Col>
   );
 }
